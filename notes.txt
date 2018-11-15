@@ -1,0 +1,52 @@
+2018/11/14
+----------------------------------------------------------------------------------------------------
+
+CMD COMMANDS:
+
+python manage.py runserver (runs the server)
+python manage.py migrate (migrates the files into a database)
+python manage.py createsuperuser (creates the admin user)
+python manage.py startapp <app_name> (creates a 'app_name' directory with the data structures to create an app)
+
+pip install mysqlclient (installs mySQL)
+
+--------------------------------------------------
+
+in setting.py of the mysite directory:
+
+SECRET_KEY --> do not share/upload to github
+DEBUG --> set to false in prodution
+
+**Pay atention to the MIDDLEWARE orders when calling methods.
+
+*** Change the default sqlite3 to MySQL (because mysql is better)
+
+Using MySQL
+
+1. in your webbrowser go to localhost/phpmyadmin/ --> click on databases --> name: type <name> bracket and create
+2. in settings.py of my site:
+  DATABASES = {
+    'default': {
+    'ENGINE': 'django.db.backends.mysql'
+    'NAME': '<database_created>'
+    'USER': '<created_user>'
+    'PASSWORD': '<created_password>'
+    'HOST': 'localhost'
+    'PORT': '' #leave this blank
+    }
+  }
+--------------------------------------------------
+Configuring URLS:
+
+1. in settings.py --> urls.py, add: from django.urls import include
+2. add to the urlpatterns: url(r'^posts/', include('posts.urls')) # route anything with posts/ to the posts.urls file
+3. In the posts app --> create a urls.py file and import the url function:
+4. write in the urlpatterns: url(r'^$', views.index, name='index') ^ - beginning with, $ - nothing
+  in this case, ^$ means that with just ~posts/ we call the index method from view
+5. go to the views.py and create a function called index that accepts a request (being on the webpage) and returns a
+  render.
+
+
+
+------------------------------------------------------------
+------------------------------------------------------------
